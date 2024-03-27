@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Login {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'zing_it/css/songs.css' %}" />
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="{% url 'songs:login' %}">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" value="Login" />
+</form>
+<p>
+    status: {{status}}
+    {% if status == 'Login successful' %}
+    <a href="{% url 'songs:home' %}">Logout</a>
+    {% endif %}
+</p>
+{% endblock %}

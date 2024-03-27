@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'zing_it/css/songs.css' %}" />
+{% endblock %}
+
+{% block title %} Songs Page {% endblock %}
+
+{% block header %}
+<h1>
+    <center>{{playlist_name}}</center>
+</h1>
+{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Track</th>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>Length</th>
+        <th>Edit</th>
+    </tr>
+    {% for song in songs %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ song.track }}</td>
+        <td>{{ song.artist }}</td>
+        <td>{{ song.album }}</td>
+        <td>{{ song.length }}</td>
+        <td>
+            <a href="{% url 'songs:edit_song' song.id %}">Edit</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
